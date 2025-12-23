@@ -65,5 +65,5 @@ registerForm.addEventListener("submit", function (e) {
     });
 
     // Redirect after register
-    window.location.href = ROUTES.CARS_LANDING;
+    window.location.href = ROUTES.CARS_LIST;
 });

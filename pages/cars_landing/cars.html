@@ -1,495 +1,331 @@
 <!DOCTYPE html>
 
 <html class="light" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>AutoMarket - Find Your Dream Car</title>
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap"
-      rel="stylesheet"
-    />
-    <!-- Material Symbols -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-      rel="stylesheet"
-    />
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <!-- Theme Config -->
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#2C097F",
-              "primary-dark": "#0e46b9",
-              "background-light": "#f6f6f8",
-              "background-dark": "#151022",
-            },
-            fontFamily: { display: "Inter" },
-            borderRadius: {
-              DEFAULT: "0.25rem",
-              lg: "0.5rem",
-              xl: "0.75rem",
-              full: "9999px",
-            },
-          },
-        },
-      };
-    </script>
-    <style>
-      body {
-        font-family: "Inter", sans-serif;
-      }
 
-      /*Custom scrollbar for sidebar if needed */
-      .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-      }
-    </style>
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>AutoMarket - Find Your Dream Car</title>
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Material Symbols -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <!-- Theme Config -->
+  <script src="/js/utils/config.js"></script>
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+    }
 
-  <body
-    class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display text-[#111318] dark:text-white"
-  >
-    <!-- Top Navigation -->
-    <header
-      class="sticky top-0 z-50 bg-white dark:bg-[#1a202c] border-b border-[#f0f2f4] dark:border-gray-800 shadow-sm"
-    >
-      <div class="max-w-[1440px] mx-auto px-4 lg:px-8">
-        <div class="flex items-center justify-between h-16 gap-4">
-          <!-- Logo -->
-          <a
-            class="flex items-center gap-3 text-[#111318] dark:text-white flex-shrink-0"
-            href="#"
-          >
-            <div class="size-8 text-primary">
-              <span class="material-symbols-outlined text-[32px] fill-1"
-                >directions_car</span
-              >
-            </div>
-            <h2 class="text-xl font-bold tracking-tight">AutoMarket</h2>
-          </a>
-          <!-- Search Bar (Hidden on mobile, visible on lg) -->
-          <div class="hidden lg:flex flex-1 max-w-lg mx-8">
-            <label
-              class="flex w-full items-stretch rounded-lg h-10 border border-[#dbdfe6] dark:border-gray-700 bg-[#f0f2f4] dark:bg-gray-800 overflow-hidden group focus-within:ring-2 focus-within:ring-primary focus-within:border-transparent"
-            >
-              <div
-                class="flex items-center justify-center pl-3 pr-2 text-[#616f89] dark:text-gray-400"
-              >
-                <span class="material-symbols-outlined text-[20px]"
-                  >search</span
-                >
-              </div>
-              <input
-                class="w-full bg-transparent border-none focus:ring-0 text-sm text-[#111318] dark:text-white placeholder-[#616f89]"
-                placeholder="Search by make, model, or keyword..."
-                value=""
-              />
-            </label>
+    /*Custom scrollbar for sidebar if needed */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display text-[#111318] dark:text-white">
+  <!-- Top Navigation -->
+  <header class="sticky top-0 z-50 bg-white dark:bg-[#1a202c] border-b border-[#f0f2f4] dark:border-gray-800 shadow-sm">
+    <div class="max-w-[1440px] mx-auto px-4 lg:px-8">
+      <div class="flex items-center justify-between h-16 gap-4">
+        <!-- Logo -->
+        <a class="flex items-center gap-3 text-[#111318] dark:text-white flex-shrink-0" href="#">
+          <div class="size-8 text-primary">
+            <span class="material-symbols-outlined text-[32px] fill-1">directions_car</span>
           </div>
-          <!-- Right Actions -->
-          <div class="flex items-center gap-4 sm:gap-6">
-            <nav class="hidden md:flex items-center gap-6">
-              <a
-                class="text-sm font-medium hover:text-primary transition-colors"
-                href="#"
-                >Buy</a
-              >
-              <a
-                class="text-sm font-medium hover:text-primary transition-colors"
-                href="#"
-                >Sell</a
-              >
-              <a
-                class="text-sm font-medium hover:text-primary transition-colors"
-                href="#"
-                >Research</a
-              >
-            </nav>
-            <div class="flex items-center gap-2 sm:gap-3">
-              <button
-                class="hidden sm:flex items-center justify-center size-10 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-[#111318] dark:text-white"
-              >
-                <span class="material-symbols-outlined text-[20px]"
-                  >favorite</span
-                >
-              </button>
-              <button
-                class="flex items-center justify-center size-10 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-[#111318] dark:text-white"
-              >
-                <span class="material-symbols-outlined text-[20px]"
-                  >account_circle</span
-                >
-              </button>
-              <button
-                class="hidden sm:flex items-center justify-center h-10 px-4 rounded-lg bg-primary hover:bg-primary-dark text-white text-sm font-bold transition-colors shadow-sm shadow-blue-200 dark:shadow-none"
-              >
-                Login
-              </button>
-              <!-- Mobile Menu Toggle -->
-              <button
-                class="lg:hidden flex items-center justify-center size-10 rounded-lg text-[#111318] dark:text-white"
-              >
-                <span class="material-symbols-outlined text-[24px]">menu</span>
-              </button>
+          <h2 class="text-xl font-bold tracking-tight" onclick="window.location.href=ROUTES.CARS_LANDING">AutoMarket
+          </h2>
+        </a>
+        <!-- Search Bar (Hidden on mobile, visible on lg) -->
+        <div class="hidden lg:flex flex-1 max-w-lg mx-8">
+          <label
+            class="flex w-full items-stretch rounded-lg h-10 border border-[#dbdfe6] dark:border-gray-700 bg-[#f0f2f4] dark:bg-gray-800 overflow-hidden group focus-within:ring-2 focus-within:ring-primary focus-within:border-transparent">
+            <div class="flex items-center justify-center pl-3 pr-2 text-[#616f89] dark:text-gray-400">
+              <span class="material-symbols-outlined text-[20px]">search</span>
             </div>
+            <input
+              class="w-full bg-transparent border-none focus:ring-0 text-sm text-[#111318] dark:text-white placeholder-[#616f89]"
+              placeholder="Search by make, model, or keyword..." value="" />
+          </label>
+        </div>
+        <!-- Right Actions -->
+        <div class="flex items-center gap-4 sm:gap-6">
+          <nav class="hidden md:flex items-center gap-6">
+            <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Buy</a>
+            <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Sell</a>
+            <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Research</a>
+          </nav>
+          <div class="flex items-center gap-2 sm:gap-3">
+            <button
+              class="hidden sm:flex items-center justify-center size-10 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-[#111318] dark:text-white">
+              <span class="material-symbols-outlined text-[20px]">favorite</span>
+            </button>
+
+            <div id="auth-buttons"></div>
+
+            </script>
+
+            <!-- Mobile Menu Toggle -->
+            <button
+              class="lg:hidden flex items-center justify-center size-10 rounded-lg text-[#111318] dark:text-white">
+              <span class="material-symbols-outlined text-[24px]">menu</span>
+            </button>
           </div>
         </div>
       </div>
-    </header>
-    <!-- Main Content Area -->
-    <main class="flex-grow w-full max-w-[1440px] mx-auto px-4 lg:px-8 py-8">
-      <div class="flex flex-col lg:flex-row gap-8">
-        <!-- Sidebar Filters -->
-        <aside class="w-full lg:w-[280px] flex-shrink-0 space-y-6">
-          <div class="flex items-center justify-between lg:hidden mb-4">
-            <h2 class="text-lg font-bold">Filters</h2>
-            <button class="text-primary text-sm font-medium">Reset All</button>
-          </div>
-          <div class="lg:sticky lg:top-24 space-y-4">
-            <div
-              class="flex items-center justify-between hidden lg:flex pb-2 border-b border-gray-100 dark:border-gray-800"
-            >
-              <h3 class="font-bold text-lg">Filter Results</h3>
-              <button
-                class="text-xs font-semibold text-primary hover:underline"
-              >
-                Reset All
-              </button>
-            </div>
-            <!-- Filter Group: Price -->
-            <details
-              class="group rounded-xl border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-[#1a202c] overflow-hidden"
-              open=""
-            >
-              <summary
-                class="flex cursor-pointer items-center justify-between px-4 py-3 bg-white dark:bg-[#1a202c] hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors select-none"
-              >
-                <span class="text-sm font-bold">Price Range</span>
-                <span
-                  class="material-symbols-outlined text-[20px] transition-transform group-open:rotate-180"
-                  >expand_more</span
-                >
-              </summary>
-              <div
-                class="px-4 pb-5 pt-2 border-t border-gray-100 dark:border-gray-700"
-              >
-                <!-- Visual Slider Component -->
-                <div
-                  class="relative w-full h-12 flex items-center justify-center"
-                >
-                  <div
-                    class="absolute w-full h-1 bg-[#dbdfe6] dark:bg-gray-600 rounded-full"
-                  ></div>
-                  <div
-                    class="absolute h-1 bg-primary rounded-full left-[10%] right-[30%]"
-                  ></div>
-                  <div
-                    class="absolute h-4 w-4 bg-white border-2 border-primary rounded-full shadow cursor-pointer left-[10%] -translate-x-1/2 hover:scale-110 transition-transform"
-                  ></div>
-                  <div
-                    class="absolute h-4 w-4 bg-white border-2 border-primary rounded-full shadow cursor-pointer right-[30%] translate-x-1/2 hover:scale-110 transition-transform"
-                  ></div>
-                </div>
-                <div class="flex items-center justify-between gap-2 mt-1">
-                  <div
-                    class="bg-[#f0f2f4] dark:bg-gray-700 rounded px-2 py-1 text-xs font-medium"
-                  >
-                    $5,000
-                  </div>
-                  <div
-                    class="bg-[#f0f2f4] dark:bg-gray-700 rounded px-2 py-1 text-xs font-medium"
-                  >
-                    $45,000
-                  </div>
-                </div>
-              </div>
-            </details>
-            <!-- Filter Group: Brand -->
-            <details
-              class="group rounded-xl border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-[#1a202c] overflow-hidden"
-              open=""
-            >
-              <summary
-                class="flex cursor-pointer items-center justify-between px-4 py-3 bg-white dark:bg-[#1a202c] hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors select-none"
-              >
-                <span class="text-sm font-bold">Make &amp; Model</span>
-                <span
-                  class="material-symbols-outlined text-[20px] transition-transform group-open:rotate-180"
-                  >expand_more</span
-                >
-              </summary>
-              <div
-                class="px-4 pb-4 pt-2 border-t border-gray-100 dark:border-gray-700 max-h-60 overflow-y-auto custom-scrollbar"
-              >
-                <div class="space-y-2">
-                  <label
-                    class="flex items-center gap-3 cursor-pointer group/item"
-                  >
-                    <input
-                      class="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
-                      type="checkbox"
-                    />
-                    <span
-                      class="text-sm text-gray-700 dark:text-gray-300 group-hover/item:text-primary transition-colors"
-                      >Toyota</span
-                    >
-                    <span class="ml-auto text-xs text-gray-400">(45)</span>
-                  </label>
-                  <label
-                    class="flex items-center gap-3 cursor-pointer group/item"
-                  >
-                    <input
-                      checked=""
-                      class="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
-                      type="checkbox"
-                    />
-                    <span
-                      class="text-sm text-gray-700 dark:text-gray-300 group-hover/item:text-primary transition-colors"
-                      >BMW</span
-                    >
-                    <span class="ml-auto text-xs text-gray-400">(12)</span>
-                  </label>
-                  <label
-                    class="flex items-center gap-3 cursor-pointer group/item"
-                  >
-                    <input
-                      class="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
-                      type="checkbox"
-                    />
-                    <span
-                      class="text-sm text-gray-700 dark:text-gray-300 group-hover/item:text-primary transition-colors"
-                      >Tesla</span
-                    >
-                    <span class="ml-auto text-xs text-gray-400">(8)</span>
-                  </label>
-                  <label
-                    class="flex items-center gap-3 cursor-pointer group/item"
-                  >
-                    <input
-                      class="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
-                      type="checkbox"
-                    />
-                    <span
-                      class="text-sm text-gray-700 dark:text-gray-300 group-hover/item:text-primary transition-colors"
-                      >Ford</span
-                    >
-                    <span class="ml-auto text-xs text-gray-400">(23)</span>
-                  </label>
-                </div>
-              </div>
-            </details>
-            <!-- Filter Group: Year -->
-            <details
-              class="group rounded-xl border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-[#1a202c] overflow-hidden"
-            >
-              <summary
-                class="flex cursor-pointer items-center justify-between px-4 py-3 bg-white dark:bg-[#1a202c] hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors select-none"
-              >
-                <span class="text-sm font-bold">Year</span>
-                <span
-                  class="material-symbols-outlined text-[20px] transition-transform group-open:rotate-180"
-                  >expand_more</span
-                >
-              </summary>
-              <div
-                class="px-4 pb-4 pt-2 border-t border-gray-100 dark:border-gray-700"
-              >
-                <div class="flex gap-2">
-                  <select
-                    class="form-select block w-full rounded-md border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-sm focus:border-primary focus:ring-primary"
-                  >
-                    <option>2015</option>
-                    <option>2016</option>
-                  </select>
-                  <span class="self-center text-gray-400">-</span>
-                  <select
-                    class="form-select block w-full rounded-md border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-sm focus:border-primary focus:ring-primary"
-                  >
-                    <option>2024</option>
-                    <option>2023</option>
-                  </select>
-                </div>
-              </div>
-            </details>
-            <!-- Filter Group: Fuel Type -->
-            <details
-              class="group rounded-xl border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-[#1a202c] overflow-hidden"
-            >
-              <summary
-                class="flex cursor-pointer items-center justify-between px-4 py-3 bg-white dark:bg-[#1a202c] hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors select-none"
-              >
-                <span class="text-sm font-bold">Fuel Type</span>
-                <span
-                  class="material-symbols-outlined text-[20px] transition-transform group-open:rotate-180"
-                  >expand_more</span
-                >
-              </summary>
-              <div
-                class="px-4 pb-4 pt-2 border-t border-gray-100 dark:border-gray-700"
-              >
-                <div class="space-y-2">
-                  <label class="flex items-center gap-3 cursor-pointer">
-                    <input
-                      class="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
-                      type="checkbox"
-                    />
-                    <span class="text-sm text-gray-700 dark:text-gray-300"
-                      >Gasoline</span
-                    >
-                  </label>
-                  <label class="flex items-center gap-3 cursor-pointer">
-                    <input
-                      class="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
-                      type="checkbox"
-                    />
-                    <span class="text-sm text-gray-700 dark:text-gray-300"
-                      >Diesel</span
-                    >
-                  </label>
-                  <label class="flex items-center gap-3 cursor-pointer">
-                    <input
-                      class="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
-                      type="checkbox"
-                    />
-                    <span class="text-sm text-gray-700 dark:text-gray-300"
-                      >Electric</span
-                    >
-                  </label>
-                  <label class="flex items-center gap-3 cursor-pointer">
-                    <input
-                      class="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
-                      type="checkbox"
-                    />
-                    <span class="text-sm text-gray-700 dark:text-gray-300"
-                      >Hybrid</span
-                    >
-                  </label>
-                </div>
-              </div>
-            </details>
-          </div>
-        </aside>
-        <!-- Main Listings -->
-        <div class="flex-1 flex flex-col min-w-0">
-          <!-- Page Header & Sort -->
+    </div>
+  </header>
+  <!-- Main Content Area -->
+  <main class="flex-grow w-full max-w-[1440px] mx-auto px-4 lg:px-8 py-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Sidebar Filters -->
+      <aside class="w-full lg:w-[280px] flex-shrink-0 space-y-6">
+        <div class="flex items-center justify-between lg:hidden mb-4">
+          <h2 class="text-lg font-bold">Filters</h2>
+          <button class="text-primary text-sm font-medium">Reset All</button>
+        </div>
+        <div class="lg:sticky lg:top-24 space-y-4">
           <div
-            class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-6"
-          >
-            <div>
-              <h1
-                class="text-3xl lg:text-4xl font-black tracking-tight text-[#111318] dark:text-white mb-2"
-              >
-                Find your dream car
-              </h1>
-              <p class="text-[#616f89] dark:text-gray-400">
-                Showing
-                <span
-                  id="results-count"
-                  class="font-bold text-[#111318] dark:text-white"
-                  >0</span
-                >
-                results for "All Cars"
-              </p>
+            class="flex items-center justify-between hidden lg:flex pb-2 border-b border-gray-100 dark:border-gray-800">
+            <h3 class="font-bold text-lg">Filter Results</h3>
+            <button class="text-xs font-semibold text-primary hover:underline">
+              Reset All
+            </button>
+          </div>
+          <!-- Filter Group: Price -->
+          <details
+            class="group rounded-xl border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-[#1a202c] overflow-hidden"
+            open="">
+            <summary
+              class="flex cursor-pointer items-center justify-between px-4 py-3 bg-white dark:bg-[#1a202c] hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors select-none">
+              <span class="text-sm font-bold">Price Range</span>
+              <span
+                class="material-symbols-outlined text-[20px] transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="px-4 pb-5 pt-2 border-t border-gray-100 dark:border-gray-700">
+              <!-- Visual Slider Component -->
+              <div class="relative w-full h-12 flex items-center justify-center">
+                <div class="absolute w-full h-1 bg-[#dbdfe6] dark:bg-gray-600 rounded-full"></div>
+                <div class="absolute h-1 bg-primary rounded-full left-[10%] right-[30%]"></div>
+                <div
+                  class="absolute h-4 w-4 bg-white border-2 border-primary rounded-full shadow cursor-pointer left-[10%] -translate-x-1/2 hover:scale-110 transition-transform">
+                </div>
+                <div
+                  class="absolute h-4 w-4 bg-white border-2 border-primary rounded-full shadow cursor-pointer right-[30%] translate-x-1/2 hover:scale-110 transition-transform">
+                </div>
+              </div>
+              <div class="flex items-center justify-between gap-2 mt-1">
+                <div class="bg-[#f0f2f4] dark:bg-gray-700 rounded px-2 py-1 text-xs font-medium">
+                  $5,000
+                </div>
+                <div class="bg-[#f0f2f4] dark:bg-gray-700 rounded px-2 py-1 text-xs font-medium">
+                  $45,000
+                </div>
+              </div>
             </div>
-            <div class="flex items-center gap-3 w-full md:w-auto">
-              <label
-                class="text-sm font-medium whitespace-nowrap hidden sm:block"
-                >Sort by:</label
-              >
-              <div class="relative w-full md:w-48">
+          </details>
+          <!-- Filter Group: Brand -->
+          <details
+            class="group rounded-xl border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-[#1a202c] overflow-hidden"
+            open="">
+            <summary
+              class="flex cursor-pointer items-center justify-between px-4 py-3 bg-white dark:bg-[#1a202c] hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors select-none">
+              <span class="text-sm font-bold">Make &amp; Model</span>
+              <span
+                class="material-symbols-outlined text-[20px] transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div
+              class="px-4 pb-4 pt-2 border-t border-gray-100 dark:border-gray-700 max-h-60 overflow-y-auto custom-scrollbar">
+              <div class="space-y-2">
+                <label class="flex items-center gap-3 cursor-pointer group/item">
+                  <input class="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
+                    type="checkbox" />
+                  <span
+                    class="text-sm text-gray-700 dark:text-gray-300 group-hover/item:text-primary transition-colors">Toyota</span>
+                  <span class="ml-auto text-xs text-gray-400">(45)</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer group/item">
+                  <input checked=""
+                    class="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
+                    type="checkbox" />
+                  <span
+                    class="text-sm text-gray-700 dark:text-gray-300 group-hover/item:text-primary transition-colors">BMW</span>
+                  <span class="ml-auto text-xs text-gray-400">(12)</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer group/item">
+                  <input class="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
+                    type="checkbox" />
+                  <span
+                    class="text-sm text-gray-700 dark:text-gray-300 group-hover/item:text-primary transition-colors">Tesla</span>
+                  <span class="ml-auto text-xs text-gray-400">(8)</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer group/item">
+                  <input class="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
+                    type="checkbox" />
+                  <span
+                    class="text-sm text-gray-700 dark:text-gray-300 group-hover/item:text-primary transition-colors">Ford</span>
+                  <span class="ml-auto text-xs text-gray-400">(23)</span>
+                </label>
+              </div>
+            </div>
+          </details>
+          <!-- Filter Group: Year -->
+          <details
+            class="group rounded-xl border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-[#1a202c] overflow-hidden">
+            <summary
+              class="flex cursor-pointer items-center justify-between px-4 py-3 bg-white dark:bg-[#1a202c] hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors select-none">
+              <span class="text-sm font-bold">Year</span>
+              <span
+                class="material-symbols-outlined text-[20px] transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="px-4 pb-4 pt-2 border-t border-gray-100 dark:border-gray-700">
+              <div class="flex gap-2">
                 <select
-                  class="form-select appearance-none w-full rounded-lg border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-[#1a202c] py-2.5 pl-4 pr-10 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent cursor-pointer"
-                >
-                  <option>Recommended</option>
-                  <option>Price: Low to High</option>
-                  <option>Price: High to Low</option>
-                  <option>Newest Arrivals</option>
-                  <option>Mileage: Low to High</option>
+                  class="form-select block w-full rounded-md border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-sm focus:border-primary focus:ring-primary">
+                  <option>2015</option>
+                  <option>2016</option>
+                </select>
+                <span class="self-center text-gray-400">-</span>
+                <select
+                  class="form-select block w-full rounded-md border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-sm focus:border-primary focus:ring-primary">
+                  <option>2024</option>
+                  <option>2023</option>
                 </select>
               </div>
             </div>
-          </div>
-          <!-- Active Filter Tags (Visual Only) -->
-          <div class="flex flex-wrap gap-2 mb-6">
-            <div
-              class="flex items-center gap-1 bg-white dark:bg-[#1a202c] border border-[#dbdfe6] dark:border-gray-700 px-3 py-1.5 rounded-full text-xs font-medium shadow-sm"
-            >
-              <span>BMW</span>
-              <button class="hover:text-red-500">
-                <span class="material-symbols-outlined text-[16px] align-middle"
-                  >close</span
-                >
-              </button>
+          </details>
+          <!-- Filter Group: Fuel Type -->
+          <details
+            class="group rounded-xl border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-[#1a202c] overflow-hidden">
+            <summary
+              class="flex cursor-pointer items-center justify-between px-4 py-3 bg-white dark:bg-[#1a202c] hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors select-none">
+              <span class="text-sm font-bold">Fuel Type</span>
+              <span
+                class="material-symbols-outlined text-[20px] transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="px-4 pb-4 pt-2 border-t border-gray-100 dark:border-gray-700">
+              <div class="space-y-2">
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input class="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
+                    type="checkbox" />
+                  <span class="text-sm text-gray-700 dark:text-gray-300">Gasoline</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input class="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
+                    type="checkbox" />
+                  <span class="text-sm text-gray-700 dark:text-gray-300">Diesel</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input class="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
+                    type="checkbox" />
+                  <span class="text-sm text-gray-700 dark:text-gray-300">Electric</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input class="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
+                    type="checkbox" />
+                  <span class="text-sm text-gray-700 dark:text-gray-300">Hybrid</span>
+                </label>
+              </div>
             </div>
-            <div
-              class="flex items-center gap-1 bg-white dark:bg-[#1a202c] border border-[#dbdfe6] dark:border-gray-700 px-3 py-1.5 rounded-full text-xs font-medium shadow-sm"
-            >
-              <span>$5k - $45k</span>
-              <button class="hover:text-red-500">
-                <span class="material-symbols-outlined text-[16px] align-middle"
-                  >close</span
-                >
-              </button>
+          </details>
+        </div>
+      </aside>
+      <!-- Main Listings -->
+      <div class="flex-1 flex flex-col min-w-0">
+        <!-- Page Header & Sort -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-6">
+          <div>
+            <h1 class="text-3xl lg:text-4xl font-black tracking-tight text-[#111318] dark:text-white mb-2">
+              Find your dream car
+            </h1>
+            <p class="text-[#616f89] dark:text-gray-400">
+              Showing
+              <span id="results-count" class="font-bold text-[#111318] dark:text-white">0</span>
+              results for "All Cars"
+            </p>
+          </div>
+          <div class="flex items-center gap-3 w-full md:w-auto">
+            <label class="text-sm font-medium whitespace-nowrap hidden sm:block">Sort by:</label>
+            <div class="relative w-full md:w-48">
+              <select
+                class="form-select appearance-none w-full rounded-lg border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-[#1a202c] py-2.5 pl-4 pr-10 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent cursor-pointer">
+                <option>Recommended</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Newest Arrivals</option>
+                <option>Mileage: Low to High</option>
+              </select>
             </div>
-            <button class="text-xs font-bold text-primary hover:underline px-2">
-              Clear All
-            </button>
-          </div>
-          <!-- Car Grid -->
-          <div
-            id="cars-grid"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6"
-          >
-            <!-- Cars will be loaded dynamically -->
-          </div>
-          <div class="mt-12 flex justify-center">
-            <nav class="flex items-center gap-4">
-              <button
-                id="prev-btn"
-                onclick="prevPage()"
-                class="flex items-center justify-center px-4 py-2 rounded-lg border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-[#1a202c] hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-500 disabled:opacity-50"
-              >
-                <span class="material-symbols-outlined text-[20px]"
-                  >chevron_left</span
-                >
-                <span class="ml-1">Previous</span>
-              </button>
-              <span id="page-number" class="text-lg font-bold">1</span>
-              <button
-                id="next-btn"
-                onclick="nextPage()"
-                class="flex items-center justify-center px-4 py-2 rounded-lg border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-[#1a202c] hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-500 disabled:opacity-50"
-              >
-                <span class="mr-1">Next</span>
-                <span class="material-symbols-outlined text-[20px]"
-                  >chevron_right</span
-                >
-              </button>
-            </nav>
           </div>
         </div>
+        <!-- Active Filter Tags (Visual Only) -->
+        <div class="flex flex-wrap gap-2 mb-6">
+          <div
+            class="flex items-center gap-1 bg-white dark:bg-[#1a202c] border border-[#dbdfe6] dark:border-gray-700 px-3 py-1.5 rounded-full text-xs font-medium shadow-sm">
+            <span>BMW</span>
+            <button class="hover:text-red-500">
+              <span class="material-symbols-outlined text-[16px] align-middle">close</span>
+            </button>
+          </div>
+          <div
+            class="flex items-center gap-1 bg-white dark:bg-[#1a202c] border border-[#dbdfe6] dark:border-gray-700 px-3 py-1.5 rounded-full text-xs font-medium shadow-sm">
+            <span>$5k - $45k</span>
+            <button class="hover:text-red-500">
+              <span class="material-symbols-outlined text-[16px] align-middle">close</span>
+            </button>
+          </div>
+          <button class="text-xs font-bold text-primary hover:underline px-2">
+            Clear All
+          </button>
+        </div>
+        <!-- Car Grid -->
+        <div id="cars-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+          <!-- Cars will be loaded dynamically -->
+        </div>
+        <div class="mt-12 flex justify-center">
+          <nav class="flex items-center gap-4">
+            <button id="prev-btn" onclick="prevPage()"
+              class="flex items-center justify-center px-4 py-2 rounded-lg border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-[#1a202c] hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-500 disabled:opacity-50">
+              <span class="material-symbols-outlined text-[20px]">chevron_left</span>
+              <span class="ml-1">Previous</span>
+            </button>
+            <span id="page-number" class="text-lg font-bold">1</span>
+            <button id="next-btn" onclick="nextPage()"
+              class="flex items-center justify-center px-4 py-2 rounded-lg border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-[#1a202c] hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-500 disabled:opacity-50">
+              <span class="mr-1">Next</span>
+              <span class="material-symbols-outlined text-[20px]">chevron_right</span>
+            </button>
+          </nav>
+        </div>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <div id="footer-container"></div>
 
-    <script src="../../js/utils/api.js"></script>
-    <script src="../../js/components/footer.js"></script>
-    <script src="../../js/pages/cars.js"></script>
-    <script>
-      document.getElementById("footer-container").appendChild(buildFooter());
-    </script>
-  </body>
+  <!-- Footer Container -->
+  <div id="footer-container"></div>
+
+  <script src="/js/utils/api.js"></script>
+  <script src="/js/utils/routes.js"></script>
+  <script src="/js/utils/auth.js" defer></script>
+  <script src="/js/components/authButtons" defer></script>
+  <script src="/js/utils/icon.js"></script>
+  <script src="/js/utils/elment.js"></script>
+  <script src="/js/components/footer.js"></script>
+  <script src="/js/pages/cars.js"></script>
+
+</body>
+
 </html>

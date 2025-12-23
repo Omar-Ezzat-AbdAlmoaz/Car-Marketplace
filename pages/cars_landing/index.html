@@ -14,21 +14,25 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     
-    <!-- Tailwind Config - غير المسار لأنه دلوقتي داخل utils -->
+    <!-- Tailwind Config  -->
     <script src="/js/utils/config.js"></script>
 
-    <!-- Custom Styles - غير المسار لأنه دلوقتي داخل css/pages -->
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="/css/pages/landing.css"/>
 
 </head>
 <body class="bg-background-light dark:bg-background-dark text-[#111318] dark:text-white font-display overflow-x-hidden min-h-screen">
     <div id="app"></div>
 
-    <!-- Main JS - غير المسار لأنه دلوقتي داخل js/pages/cars -->
-    <script src="/js/pages/cars_landing/landing.js"></script>
-    <script src="/js/utils/routes.js"></script>
-
+    <!-- Main JS - js/pages/cars -->
+     <script src="/js/utils/icon.js" defer></script>
+     <script src="/js/utils/elment.js" defer></script>
+     <script src="/js/utils/routes.js" defer></script>
+     <script src="/js/utils/auth.js" defer></script>
+     <script src="/js/components/authButtons" defer></script>
+    <script src="/js/pages/cars_landing/landing.js" defer></script>
+    
     <!-- Footer Component -->
-    <script src="/js/components/footer.js"></script>
+    <script src="/js/components/footer.js" defer></script>
 </body>
 </html>

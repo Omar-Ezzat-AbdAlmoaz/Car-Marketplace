@@ -34,7 +34,7 @@ function isAuthenticated() {
     return !!getToken();
 }
 
-function requireAuth(redirectTo = "/pages/auth/login.html") {
+function requireAuth(redirectTo = ROUTES.LOGIN) {
     if (!isAuthenticated()) {
         window.location.href = redirectTo;
     }
@@ -42,5 +42,4 @@ function requireAuth(redirectTo = "/pages/auth/login.html") {
 
 function logout() {
     clearAuthData();
-    window.location.href = "/pages/auth/login.html";
 }

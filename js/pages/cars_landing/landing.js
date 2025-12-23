@@ -1,21 +1,4 @@
-function el(tag, className = '', attrs = {}, text = '', children = []) {
-    const element = document.createElement(tag);
-    if (className) element.className = className;
-    Object.entries(attrs).forEach(([key, value]) => {
-        if (key === 'style') element.style.cssText = value;
-        else if (key.startsWith('data-')) element.dataset[key.slice(5)] = value;
-        else element.setAttribute(key, value);
-    });
-    if (text) element.textContent = text;
-    children.forEach(child => element.appendChild(child));
-    return element;
-}
 
-function icon(name, className = 'text-xl') {
-    const span = el('span', `material-symbols-outlined ${className}`);
-    span.textContent = name;
-    return span;
-}
 
 function buildPage() {
     const app = document.getElementById('app');
@@ -40,35 +23,8 @@ function buildPage() {
     navFlex.appendChild(menu);
 
     // Auth Buttons
-    const auth = el('div', 'flex items-center gap-3');
-
-    const loginBtn = el(
-        'button',
-        'hidden sm:flex items-center justify-center h-9 px-4 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 text-[#111318] dark:text-white text-sm font-bold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors',
-        {},
-        'Log In'
-    );
-
-    const signupBtn = el(
-        'button',
-        'flex items-center justify-center h-9 px-4 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary-dark transition-colors shadow-sm hover:shadow-md',
-        {},
-        'Sign Up'
-    );
-
-    // Redirects
-    loginBtn.addEventListener("click", () => {
-        window.location.href = ROUTES.LOGIN;
-    });
-
-    signupBtn.addEventListener("click", () => {
-        window.location.href = ROUTES.REGISTER;
-    });
-
-    auth.appendChild(loginBtn);
-    auth.appendChild(signupBtn);
-
-    navFlex.appendChild(auth);
+    navFlex.appendChild(buildAuthButtons());
+    
     navContainer.appendChild(navFlex);
     nav.appendChild(navContainer);
     app.appendChild(nav);
@@ -152,7 +108,7 @@ function buildPage() {
         el('h2', 'text-3xl font-black text-[#111318] dark:text-white mb-2', {}, 'Featured Listings'),
         el('p', 'text-gray-600 dark:text-gray-400', {}, 'Hand-picked vehicles just for you.')
     ]));
-    header.appendChild(el('a', 'hidden sm:flex items-center gap-1 text-primary font-bold hover:gap-2 transition-all', { href: '#' }, '', [
+    header.appendChild(el('a', 'hidden sm:flex items-center gap-1 text-primary font-bold hover:gap-2 transition-all', { href: ROUTES.CARS_LIST }, '', [
         el('span', '', {}, 'View All '),
         icon('arrow_forward', 'text-sm')
     ]));
@@ -243,7 +199,7 @@ function buildPage() {
     ctaText.append(el('p', 'text-blue-100 text-lg', {}, 'Join thousands of satisfied customers today and start your journey.'));
 
     const ctaButtons = el('div', 'relative z-10 flex flex-col sm:flex-row gap-4 w-full md:w-auto');
-    ctaButtons.appendChild(el('button', 'h-12 px-8 rounded-xl bg-white text-primary font-bold hover:bg-gray-50 transition-colors shadow-lg whitespace-nowrap', {}, 'Get Started'));
+    ctaButtons.appendChild(el('button', 'h-12 px-8 rounded-xl bg-white text-primary font-bold hover:bg-gray-50 transition-colors shadow-lg whitespace-nowrap', { onclick: "window.location.href = ROUTES.CARS_LIST" }, 'Get Started'));
     ctaButtons.appendChild(el('button', 'h-12 px-8 rounded-xl bg-blue-700/50 border border-blue-400/30 text-white font-bold hover:bg-blue-700 transition-colors whitespace-nowrap', {}, 'Contact Sales'));
 
     ctaBox.append(ctaText, ctaButtons);

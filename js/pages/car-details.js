@@ -1,26 +1,4 @@
-function el(tag, className, attrs, text, children) {
-    var element = document.createElement(tag);
-    if (className) element.className = className;
-    if (attrs) {
-        for (var key in attrs) {
-            if (key === 'style') element.style.cssText = attrs[key];
-            else element.setAttribute(key, attrs[key]);
-        }
-    }
-    if (text) element.textContent = text;
-    if (children) {
-        for (var i = 0; i < children.length; i++) {
-            element.appendChild(children[i]);
-        }
-    }
-    return element;
-}
 
-function icon(name, className) {
-    var span = el('span', 'material-symbols-outlined ' + (className || ''));
-    span.textContent = name;
-    return span;
-}
 
 
 function getCarIdFromUrl() {
@@ -49,24 +27,24 @@ function renderCarDetails(car) {
         return;
     }
 
-    
+
     document.getElementById('breadcrumb-title').textContent = car.title;
     document.title = car.title + ' - AutoMarket';
 
-    
+
     var imageSection = el('div', 'space-y-4');
 
-    
+
     var mainImageWrapper = el('div', 'relative rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800');
     var mainImage = el('img', 'w-full h-[400px] object-cover', {
-        src: car.thumbnail || car.images[0],
+        src: car.images && car.images.length > 0 ? car.images[1] : 'https://via.placeholder.com/400x300?text=No+Image',
         alt: car.title,
         id: 'main-image'
     });
     mainImageWrapper.appendChild(mainImage);
     imageSection.appendChild(mainImageWrapper);
 
-    
+
     if (car.images && car.images.length > 1) {
         var gallery = el('div', 'grid grid-cols-4 gap-3');
         for (var i = 0; i < car.images.length && i < 4; i++) {
@@ -87,17 +65,17 @@ function renderCarDetails(car) {
 
     container.appendChild(imageSection);
 
-    
+
     var detailsSection = el('div', 'space-y-6');
 
-    
+
     var header = el('div', 'space-y-2');
     header.appendChild(el('span', 'inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full', {}, car.tags ? car.tags[0] : 'Available'));
     header.appendChild(el('h1', 'text-3xl font-black text-[#111318] dark:text-white', {}, car.title));
     header.appendChild(el('p', 'text-3xl font-black text-primary', {}, '$' + car.price.toLocaleString()));
     detailsSection.appendChild(header);
 
-    
+
     var stats = el('div', 'grid grid-cols-3 gap-4 p-4 bg-[#f0f2f4] dark:bg-gray-800 rounded-xl');
 
     var statItems = [
@@ -116,13 +94,13 @@ function renderCarDetails(car) {
     }
     detailsSection.appendChild(stats);
 
-    
+
     var descSection = el('div', 'space-y-3');
     descSection.appendChild(el('h3', 'text-lg font-bold', {}, 'Description'));
     descSection.appendChild(el('p', 'text-gray-600 dark:text-gray-400 leading-relaxed', {}, car.description));
     detailsSection.appendChild(descSection);
 
-    
+
     var specsSection = el('div', 'space-y-3');
     specsSection.appendChild(el('h3', 'text-lg font-bold', {}, 'Specifications'));
 
@@ -145,7 +123,7 @@ function renderCarDetails(car) {
     specsSection.appendChild(specsGrid);
     detailsSection.appendChild(specsSection);
 
-    
+
     var actions = el('div', 'flex gap-4 pt-4');
 
     var contactBtn = el('button', 'flex-1 h-12 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl transition-colors flex items-center justify-center gap-2');
@@ -163,16 +141,9 @@ function renderCarDetails(car) {
 }
 
 
-function buildSimpleFooter() {
-    var footer = el('footer', 'bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 py-8 mt-auto');
-    var container = el('div', 'max-w-7xl mx-auto px-4 text-center');
-    container.appendChild(el('p', 'text-sm text-gray-400', {}, '© 2024 AutoMarket Inc. All rights reserved.'));
-    footer.appendChild(container);
-    return footer;
-}
-
-
 function init() {
+    document.getElementById('auth-buttons').appendChild(buildAuthButtons());
+
     var carId = getCarIdFromUrl();
 
     if (carId) {
@@ -182,9 +153,10 @@ function init() {
         renderCarDetails(null);
     }
 
-    
+
+
     var footerContainer = document.getElementById('footer-container');
-    footerContainer.appendChild(buildSimpleFooter());
+    footerContainer.appendChild(buildFooter());
 }
 
 

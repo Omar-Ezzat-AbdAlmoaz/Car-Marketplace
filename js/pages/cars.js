@@ -4,7 +4,7 @@ var carsPerPage = 6;
 
 
 function createCarCard(car) {
-    var image = car.thumbnail;
+    var image = car.images && car.images.length > 0 ? car.images[1] : 'https://via.placeholder.com/400x300?text=No+Image';
     var title = car.title;
     var description = car.description.substring(0, 30) + '...';
     var price = '$' + car.price;
@@ -79,6 +79,13 @@ function nextPage() {
     }
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    allCars = getAllCars();
+    renderCars();
 
-allCars = getAllCars();
-renderCars();
+    document.getElementById('auth-buttons').appendChild(buildAuthButtons());
+
+    document
+      .getElementById('footer-container')
+      .appendChild(buildFooter());
+});

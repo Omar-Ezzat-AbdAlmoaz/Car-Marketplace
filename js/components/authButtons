@@ -1,0 +1,74 @@
+function buildAuthButtons() {
+    // Auth Wrapper
+    const auth = el('div', 'flex items-center gap-3');
+
+    // Login Button
+    const loginBtn = el(
+        'button',
+        'hidden sm:flex items-center justify-center h-9 px-4 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 text-[#111318] dark:text-white text-sm font-bold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors',
+        {},
+        'Log In'
+    );
+
+    // Signup Button
+    const signupBtn = el(
+        'button',
+        'flex items-center justify-center h-9 px-4 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary-dark transition-colors shadow-sm hover:shadow-md',
+        {},
+        'Sign Up'
+    );
+
+    // Logout Button
+    const logoutBtn = el(
+        'button',
+        'flex items-center justify-center h-9 px-4 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary-dark transition-colors shadow-sm hover:shadow-md',
+        {},
+        'Log Out'
+    );
+
+    // Account Icon
+    const accountIcon = el(
+        'span',
+        'material-symbols-outlined text-[20px]',
+        {},
+        'account_circle'
+    );
+
+    const accountBtn = el(
+        'button',
+        'flex items-center justify-center size-10 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors',
+        {}
+        ,
+        '',
+        [accountIcon]
+    );
+
+    // Redirects
+    loginBtn.addEventListener("click", () => {
+        window.location.href = ROUTES.LOGIN;
+    });
+
+    signupBtn.addEventListener("click", () => {
+        window.location.href = ROUTES.REGISTER;
+    });
+
+    logoutBtn.addEventListener("click", () => {
+        logout();
+        window.location.href = ROUTES.CARS_LANDING;
+    });
+
+    accountBtn.addEventListener("click", () => {
+        window.location.href = ROUTES.PROFILE || '/profile.html';
+    });
+
+    // Auth Logic
+    if (isAuthenticated()) {
+        auth.appendChild(accountBtn);
+        auth.appendChild(logoutBtn);
+    } else {
+        auth.appendChild(loginBtn);
+        auth.appendChild(signupBtn);
+    }
+
+    return auth;
+}
