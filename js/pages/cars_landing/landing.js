@@ -199,7 +199,7 @@ function buildPage() {
     ctaText.append(el('p', 'text-blue-100 text-lg', {}, 'Join thousands of satisfied customers today and start your journey.'));
 
     const ctaButtons = el('div', 'relative z-10 flex flex-col sm:flex-row gap-4 w-full md:w-auto');
-    ctaButtons.appendChild(el('button', 'h-12 px-8 rounded-xl bg-white text-primary font-bold hover:bg-gray-50 transition-colors shadow-lg whitespace-nowrap', { onclick: "window.location.href = ROUTES.CARS_LIST" }, 'Get Started'));
+    ctaButtons.appendChild(el('button', 'h-12 px-8 rounded-xl bg-white text-primary font-bold hover:bg-gray-50 transition-colors shadow-lg whitespace-nowrap', { onclick: "window.location.href = ROUTES.LOGIN" }, 'Get Started'));
     ctaButtons.appendChild(el('button', 'h-12 px-8 rounded-xl bg-blue-700/50 border border-blue-400/30 text-white font-bold hover:bg-blue-700 transition-colors whitespace-nowrap', {}, 'Contact Sales'));
 
     ctaBox.append(ctaText, ctaButtons);

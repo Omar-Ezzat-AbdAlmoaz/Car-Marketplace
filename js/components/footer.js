@@ -120,7 +120,7 @@ function buildFooter() {
             'p',
             'text-sm text-gray-400 text-center md:text-left',
             {},
-            '© 2024 CarMarket Inc. All rights reserved.'
+            '© 2026 CarMarket Inc. All rights reserved.'
         )
     );
 
